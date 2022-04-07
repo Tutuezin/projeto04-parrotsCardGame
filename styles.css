@@ -1,0 +1,95 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #eef9bf;
+}
+
+#header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+
+  height: 96px;
+}
+
+#header h1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 56px;
+  font-weight: bold;
+
+  color: #75b79e;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.allCards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  width: 1000px;
+
+  /* background-color: aqua; */
+}
+
+.allCards li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 146px;
+  width: 117px;
+
+  margin-right: 34px;
+  margin-bottom: 34px;
+
+  border-radius: 5px;
+
+  background-color: #a7e9af;
+  border: 1px solid #99cea8;
+}
+
+.allCards img {
+  height: 100px;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+}
+
+@media (max-width: 335px) {
+  #header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  #header h1 {
+    font-size: 36px;
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  .allCards {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 100%;
+  }
+
+  .allCards li {
+    margin-right: 0;
+  }
+}
