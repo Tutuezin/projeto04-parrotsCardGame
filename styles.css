@@ -53,6 +53,8 @@ body {
 
   background-color: #a7e9af;
   border: 1px solid #99cea8;
+
+  cursor: pointer;
 }
 
 .allCards img {
@@ -64,16 +66,20 @@ body {
   width: 100px;
 }
 
+@media (max-width: 543px) {
+  #header h1 {
+    text-align: center;
+  }
+}
+
 @media (max-width: 335px) {
   #header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     margin-top: 30px;
   }
 
   #header h1 {
+    text-align: center;
     font-size: 36px;
   }
 
