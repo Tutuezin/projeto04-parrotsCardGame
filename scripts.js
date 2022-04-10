@@ -1,13 +1,15 @@
 /* PERGUNTA A QUANTIDADE DE CARTAS */
-const qntCartas = Number(
+let qntCartas = Number(
   prompt("Com quantas cartas queres jogar? (Inserir n° pares de 4 a 14!)")
 );
 /* COLOCA A LI DENTRO DA UL */
 const todasAsCartas = document.querySelector(".allCards");
 
+/* CONTADOR DE JOGADDAS */
 let carta1;
 let carta2;
 let contadorJogadas = 0;
+let cooldown;
 
 /* VERIFICAO */
 while (
@@ -29,6 +31,7 @@ const arrayEmbaralhado = embaralharCartas(qntCartas);
 for (i = 0; i < qntCartas; i++) {
   /* CRIADOR DE LI COM ONCLICK */
   let cartaNVirada = document.createElement("li");
+  cartaNVirada.classList.add("cartaDesvirada");
   cartaNVirada.setAttribute("onclick", `virarCarta(this)`);
   cartaNVirada.setAttribute("carta", arrayEmbaralhado[i]);
 
@@ -42,9 +45,18 @@ for (i = 0; i < qntCartas; i++) {
 
 /* FUNCAO DE VIRAR CARTA */
 function virarCarta(vira) {
-  let clica = vira.firstChild;
+  if (cooldown) {
+    return;
+  }
 
-  clica.setAttribute("src", vira.getAttribute("carta"));
+  let clica = vira.firstChild;
+  contadorJogadas++;
+  vira.classList.toggle("viraCarta");
+  vira.classList.toggle("cartaDesvirada");
+
+  setTimeout(() => {
+    clica.setAttribute("src", vira.getAttribute("carta"));
+  }, 0);
   checarDupla(vira);
 }
 
@@ -74,8 +86,8 @@ function embaralharCartas(qntCartas) {
   return listaEmbaralhada;
 }
 
+/* CHECAR CARTAS IGUAIS */
 function checarDupla(cartaClicada) {
-  contadorJogadas++;
   if (!carta1) {
     carta1 = cartaClicada;
   } else {
@@ -84,28 +96,50 @@ function checarDupla(cartaClicada) {
   if (carta2) {
     const carta1png = carta1.getAttribute("carta");
     const carta2png = carta2.getAttribute("carta");
+    cooldown = true;
     if (carta1png === carta2png) {
       carta1.setAttribute("onclick", "");
       carta2.setAttribute("onclick", "");
-      carta1.style.cursor = "auto";
-      carta2.style.cursor = "auto";
+      cooldown = false;
 
       if (checarFim()) {
-        alert(`Você ganhou em ${contadorJogadas} jogadas!`);
+        setTimeout(() => {
+          alert(`Você ganhou em ${contadorJogadas} jogadas!`);
+        }, 1000);
       }
     } else {
-      const carta1img = carta1.firstChild;
-      const carta2img = carta2.firstChild;
-      setTimeout(function () {
+      const cartaUm = carta1;
+      const cartaDois = carta2;
+      const carta1img = cartaUm.firstChild;
+      const carta2img = cartaDois.firstChild;
+      setTimeout(() => {
         carta1img.setAttribute("src", "assets/front.png");
         carta2img.setAttribute("src", "assets/front.png");
+        cartaUm.classList.toggle("viraCarta");
+        cartaDois.classList.toggle("viraCarta");
+        cartaUm.classList.toggle("cartaDesvirada");
+        cartaDois.classList.toggle("cartaDesvirada");
+        cooldown = false;
       }, 1000);
     }
+    // RESETA AS CARTAS
     carta1 = undefined;
     carta2 = undefined;
   }
 }
 
+function mudarClasse(carta1, carta2) {
+  const carta1img = carta1.firstChild;
+  const carta2img = carta2.firstChild;
+  carta1img.setAttribute("src", "assets/front.png");
+  carta2img.setAttribute("src", "assets/front.png");
+  carta1png.classList.toggle("viraCarta");
+  carta2png.classList.toggle("viraCarta");
+  carta1png.classList.toggle("cartaDesvirada");
+  carta2png.classList.toggle("cartaDesvirada");
+}
+
+/* CHEGAR SE O JOGO TERMINOU */
 function checarFim() {
   const arrayLi = document.querySelectorAll("li");
   for (li of arrayLi) {

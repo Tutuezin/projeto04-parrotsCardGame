@@ -99,3 +99,19 @@ body {
     margin-right: 0;
   }
 }
+
+.cartaDesvirada {
+  transition: all 0.8s;
+  transform: rotateY(360deg);
+}
+
+.viraCarta {
+  background: red;
+  cursor: auto;
+  transition: all 0.8s;
+  transform: rotateY(180deg);
+}
+
+.viraCarta img {
+  transform: rotateY(180deg);
+}
