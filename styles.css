@@ -3,7 +3,7 @@
 }
 
 body {
-  background: #eef9bf;
+  background: #000000;
 }
 
 #header {
@@ -16,11 +16,11 @@ body {
 }
 
 #header h1 {
-  font-family: "Roboto", sans-serif;
-  font-size: 56px;
-  font-weight: bold;
+  font-family: "Rubik Wet Paint", cursive;
+  font-size: 70px;
+  font-weight: 400;
 
-  color: #75b79e;
+  color: #ffff04;
 }
 
 .container {
@@ -51,8 +51,8 @@ body {
 
   border-radius: 5px;
 
-  background-color: #a7e9af;
-  border: 1px solid #99cea8;
+  background-color: #ffff04;
+  border: 1px solid #635e01;
 
   cursor: pointer;
 }
@@ -106,7 +106,6 @@ body {
 }
 
 .viraCarta {
-  background: red;
   cursor: auto;
   transition: all 0.8s;
   transform: rotateY(180deg);

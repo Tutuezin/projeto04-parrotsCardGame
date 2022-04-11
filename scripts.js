@@ -4,8 +4,9 @@ let qntCartas = Number(
 );
 /* COLOCA A LI DENTRO DA UL */
 const todasAsCartas = document.querySelector(".allCards");
-
-/* CONTADOR DE JOGADDAS */
+const porta = document.querySelector("#porta");
+porta.play();
+/* CONTADOR DE JOGADAS */
 let carta1;
 let carta2;
 let contadorJogadas = 0;
@@ -37,7 +38,7 @@ for (i = 0; i < qntCartas; i++) {
 
   /* CRIADOR DE IMG */
   let imagem = document.createElement("img");
-  imagem.setAttribute("src", "assets/front.png");
+  imagem.setAttribute("src", "assets/edchad.jpeg");
   cartaNVirada.appendChild(imagem);
 
   todasAsCartas.appendChild(cartaNVirada);
@@ -49,27 +50,29 @@ function virarCarta(vira) {
     return;
   }
 
+  if (vira.getAttribute("carta") === "assets/edtaliba.png" && !carta1) {
+    const alahu = document.querySelector("#alahuCurto");
+    alahu.play();
+  }
   let clica = vira.firstChild;
   contadorJogadas++;
   vira.classList.toggle("viraCarta");
   vira.classList.toggle("cartaDesvirada");
 
-  setTimeout(() => {
-    clica.setAttribute("src", vira.getAttribute("carta"));
-  }, 0);
+  clica.setAttribute("src", vira.getAttribute("carta"));
   checarDupla(vira);
 }
 
 /* EMBARALHADOR */
 function embaralharCartas(qntCartas) {
   const listaCartas = [
-    "assets/bobrossparrot.gif",
-    "assets/explodyparrot.gif",
-    "assets/fiestaparrot.gif",
-    "assets/metalparrot.gif",
-    "assets/revertitparrot.gif",
-    "assets/tripletsparrot.gif",
-    "assets/unicornparrot.gif",
+    "assets/edtaliba.png",
+    "assets/edcowboy.jpeg",
+    "assets/edestilo.png",
+    "assets/edfamilia.jpg",
+    "assets/edotaku.jpg",
+    "assets/edrico.png",
+    "assets/edsonecas.jpg",
   ];
 
   const listaEmbaralhada = [];
@@ -98,6 +101,10 @@ function checarDupla(cartaClicada) {
     const carta2png = carta2.getAttribute("carta");
     cooldown = true;
     if (carta1png === carta2png) {
+      if (carta1png === "assets/edtaliba.png") {
+        const alahu = document.querySelector("#alahuLongo");
+        alahu.play();
+      }
       carta1.setAttribute("onclick", "");
       carta2.setAttribute("onclick", "");
       cooldown = false;
@@ -113,8 +120,8 @@ function checarDupla(cartaClicada) {
       const carta1img = cartaUm.firstChild;
       const carta2img = cartaDois.firstChild;
       setTimeout(() => {
-        carta1img.setAttribute("src", "assets/front.png");
-        carta2img.setAttribute("src", "assets/front.png");
+        carta1img.setAttribute("src", "assets/edchad.jpeg");
+        carta2img.setAttribute("src", "assets/edchad.jpeg");
         cartaUm.classList.toggle("viraCarta");
         cartaDois.classList.toggle("viraCarta");
         cartaUm.classList.toggle("cartaDesvirada");
