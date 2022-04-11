@@ -33,12 +33,12 @@ for (i = 0; i < qntCartas; i++) {
   /* CRIADOR DE LI COM ONCLICK */
   let cartaNVirada = document.createElement("li");
   cartaNVirada.classList.add("cartaDesvirada");
-  cartaNVirada.setAttribute("onclick", `virarCarta(this)`);
+  cartaNVirada.setAttribute("onclick", `virarCarta(this)`); // onclick = "virarCarta(this)"
   cartaNVirada.setAttribute("carta", arrayEmbaralhado[i]);
 
   /* CRIADOR DE IMG */
   let imagem = document.createElement("img");
-  imagem.setAttribute("src", "assets/edchad.jpeg");
+  imagem.setAttribute("src", "assets/edchad.jpeg"); // src = "assets/edchad.jpeg"
   cartaNVirada.appendChild(imagem);
 
   todasAsCartas.appendChild(cartaNVirada);
